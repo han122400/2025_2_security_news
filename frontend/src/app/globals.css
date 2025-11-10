@@ -1,0 +1,98 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Swiper 커스텀 스타일 */
+.news-swiper {
+  padding-bottom: 48px !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+
+.news-swiper .swiper-button-next,
+.news-swiper .swiper-button-prev {
+  color: #2563eb;
+  background: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  opacity: 0;
+  z-index: 10;
+}
+
+.news-swiper:hover .swiper-button-next,
+.news-swiper:hover .swiper-button-prev {
+  opacity: 0.9;
+}
+
+/* 화살표를 중앙에 배치 */
+.news-swiper .swiper-button-prev {
+  left: 16px;
+}
+
+.news-swiper .swiper-button-next {
+  right: 16px;
+}
+
+.news-swiper .swiper-button-next:after,
+.news-swiper .swiper-button-prev:after {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.news-swiper .swiper-button-next:hover,
+.news-swiper .swiper-button-prev:hover {
+  background: #2563eb;
+  color: white;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.news-swiper .swiper-button-disabled {
+  opacity: 0 !important;
+}
+
+/* 페이지네이션을 하단으로 배치 */
+.news-swiper .swiper-pagination {
+  bottom: 0 !important;
+  padding-top: 16px;
+}
+
+.news-swiper .swiper-pagination-bullet {
+  background: #2563eb;
+  opacity: 0.3;
+  width: 8px;
+  height: 8px;
+  transition: all 0.3s ease;
+}
+
+.news-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  width: 24px;
+  border-radius: 4px;
+}
