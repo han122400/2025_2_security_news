@@ -1,9 +1,9 @@
 'use client'
 
+import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { CategoryFilterProvider } from '@/contexts/CategoryFilterContext'
-import Head from 'next/head'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -21,12 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ko">
-      <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="alternate icon" href="/icon.svg" type="image/svg+xml" />
-        <title>보안뉴스 - 최신 사이버보안 뉴스</title>
-      </head>
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

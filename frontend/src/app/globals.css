@@ -34,15 +34,41 @@ body {
 
 .news-swiper .swiper-button-next,
 .news-swiper .swiper-button-prev {
-  color: #2563eb;
+  color: transparent;
   background: white;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   opacity: 0;
   z-index: 10;
+}
+
+.news-swiper .swiper-button-next::after,
+.news-swiper .swiper-button-prev::after {
+  content: '' !important;
+  display: none !important;
+}
+
+.news-swiper .swiper-button-next::before {
+  content: '▶';
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.news-swiper .swiper-button-prev::before {
+  content: '◀';
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .news-swiper:hover .swiper-button-next,
@@ -57,12 +83,6 @@ body {
 
 .news-swiper .swiper-button-next {
   right: 16px;
-}
-
-.news-swiper .swiper-button-next:after,
-.news-swiper .swiper-button-prev:after {
-  font-size: 16px;
-  font-weight: bold;
 }
 
 .news-swiper .swiper-button-next:hover,
@@ -95,4 +115,25 @@ body {
   opacity: 1;
   width: 24px;
   border-radius: 4px;
+}
+
+/* Input placeholder 스타일 */
+input::placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+input::-webkit-input-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+input::-moz-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+input:-ms-input-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
 }
