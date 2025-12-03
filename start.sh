@@ -12,4 +12,4 @@ sleep 3
 
 # 프론트엔드 시작 (포트는 Cloud Run의 PORT 사용)
 cd /app/frontend
-PORT=$PORT node server.js
+PORT=$PORT npm start

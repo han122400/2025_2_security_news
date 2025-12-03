@@ -36,10 +36,10 @@ RUN pip3 install --no-cache-dir -r backend/requirements.txt --break-system-packa
 COPY backend/ ./backend/
 
 # 프론트엔드 빌드 결과 복사
-COPY --from=frontend-builder /app/frontend/.next/standalone ./frontend/
-COPY --from=frontend-builder /app/frontend/.next/static ./frontend/.next/static
+COPY --from=frontend-builder /app/frontend/.next ./frontend/.next
+COPY --from=frontend-builder /app/frontend/node_modules ./frontend/node_modules
+COPY --from=frontend-builder /app/frontend/package.json ./frontend/package.json
 COPY --from=frontend-builder /app/frontend/public ./frontend/public
-COPY --from=frontend-builder /app/frontend/package.json ./frontend/
 
 # 시작 스크립트 복사
 COPY start.sh ./
