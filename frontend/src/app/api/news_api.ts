@@ -2,10 +2,13 @@
 
 // 동적으로 API URL 결정 (.env 환경변수에서 가져옴)
 const getApiBaseUrl = () => {
-  // 프로덕션(배포 환경)에서는 /api 사용 (rewrites로 백엔드 연결)
-  // 로컬 개발 환경에서는 환경변수 또는 기본값 사용
-  if (process.env.NODE_ENV === 'production' && !process.env.NEXT_PUBLIC_API_URL) {
-    return '/api'
+  // 프로덕션(배포 환경)에서는 빈 문자열 사용 (rewrites로 /api/* 경로 처리)
+  // 로컬 개발 환境에서는 환경변수 또는 기본값 사용
+  if (
+    process.env.NODE_ENV === 'production' &&
+    !process.env.NEXT_PUBLIC_API_URL
+  ) {
+    return ''
   }
   return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 }
@@ -59,7 +62,7 @@ export async function searchNews(
     sort,
   })
 
-  const response = await fetch(`${API_BASE_URL}/news/search?${params}`, {
+  const response = await fetch(`${API_BASE_URL}/api/news/search?${params}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

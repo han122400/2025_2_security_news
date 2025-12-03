@@ -21,7 +21,7 @@ export default function SearchBar() {
         const apiUrl =
           process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
         const response = await fetch(
-          `${apiUrl}/stats/popular-keywords?limit=6`
+          `${apiUrl}/api/stats/popular-keywords?limit=6`
         )
         if (response.ok) {
           const data = await response.json()
