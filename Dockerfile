@@ -1,7 +1,7 @@
 # 멀티 스테이지 빌드로 프론트엔드와 백엔드 통합
 
 # Stage 1: Frontend 빌드
-FROM node:18-alpine AS frontend-builder
+FROM node:20-alpine AS frontend-builder
 WORKDIR /app/frontend
 
 COPY frontend/package*.json ./
@@ -16,7 +16,7 @@ ENV NEXT_PUBLIC_API_URL=/api
 RUN npm run build
 
 # Stage 2: 최종 실행 이미지
-FROM node:18-slim
+FROM node:20-slim
 
 WORKDIR /app
 
