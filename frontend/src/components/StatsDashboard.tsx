@@ -24,6 +24,17 @@ interface CategoryStatsResponse {
   categories: CategoryStat[]
 }
 
+// API Base URL 결정 함수
+const getApiBaseUrl = () => {
+  if (
+    process.env.NODE_ENV === 'production' &&
+    !process.env.NEXT_PUBLIC_API_URL
+  ) {
+    return ''
+  }
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+}
+
 export default function StatsDashboard() {
   const [popularKeywords, setPopularKeywords] = useState<KeywordStat[]>([])
   const [categoryStats, setCategoryStats] =
@@ -37,7 +48,7 @@ export default function StatsDashboard() {
   const fetchStats = async () => {
     try {
       // 인기 키워드 가져오기
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+      const apiUrl = getApiBaseUrl()
       const keywordsRes = await fetch(
         `${apiUrl}/api/stats/popular-keywords?limit=30`
       )

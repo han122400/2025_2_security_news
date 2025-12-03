@@ -3,6 +3,17 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 
+// API Base URL 결정 함수
+const getApiBaseUrl = () => {
+  if (
+    process.env.NODE_ENV === 'production' &&
+    !process.env.NEXT_PUBLIC_API_URL
+  ) {
+    return ''
+  }
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+}
+
 interface CategoryFilterContextType {
   disabledCategories: { [key: string]: boolean }
   toggleCategory: (category: string) => void
@@ -43,8 +54,7 @@ export function CategoryFilterProvider({
         data: { session },
       } = await supabase.auth.getSession()
       if (session?.access_token) {
-        const apiUrl =
-          process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+        const apiUrl = getApiBaseUrl()
         const response = await fetch(`${apiUrl}/api/user/profile`, {
           headers: {
             Authorization: `Bearer ${session.access_token}`,

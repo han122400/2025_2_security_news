@@ -13,6 +13,17 @@ import {
 import Header from '@/components/Header'
 import Link from 'next/link'
 
+// API Base URL 결정 함수
+const getApiBaseUrl = () => {
+  if (
+    process.env.NODE_ENV === 'production' &&
+    !process.env.NEXT_PUBLIC_API_URL
+  ) {
+    return ''
+  }
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+}
+
 // 네이버 뉴스 API 응답 타입
 interface NaverNewsItem {
   title: string // HTML 태그 포함
@@ -227,8 +238,7 @@ function SearchContent() {
 
       try {
         const start = (currentPage - 1) * itemsPerPage + 1
-        const apiUrl =
-          process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+        const apiUrl = getApiBaseUrl()
         const response = await fetch(
           `${apiUrl}/api/news/search?query=${encodeURIComponent(
             query

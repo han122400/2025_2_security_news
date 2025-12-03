@@ -19,6 +19,17 @@ import {
 } from 'lucide-react'
 import { useCategoryFilter } from '@/contexts/CategoryFilterContext'
 
+// API Base URL 결정 함수
+const getApiBaseUrl = () => {
+  if (
+    process.env.NODE_ENV === 'production' &&
+    !process.env.NEXT_PUBLIC_API_URL
+  ) {
+    return ''
+  }
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+}
+
 interface BookmarkItem {
   id: string
   news_id: number
@@ -80,8 +91,7 @@ export default function ProfilePage() {
           data: { session },
         } = await supabase.auth.getSession()
         if (session?.access_token) {
-          const apiUrl =
-            process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+          const apiUrl = getApiBaseUrl()
           const response = await fetch(`${apiUrl}/api/user/profile`, {
             headers: {
               Authorization: `Bearer ${session.access_token}`,
@@ -153,8 +163,7 @@ export default function ProfilePage() {
         data: { session },
       } = await supabase.auth.getSession()
       if (session?.access_token) {
-        const apiUrl =
-          process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+        const apiUrl = getApiBaseUrl()
         const response = await fetch(`${apiUrl}/api/user/profile/categories`, {
           method: 'PUT',
           headers: {
@@ -235,8 +244,7 @@ export default function ProfilePage() {
         data: { session },
       } = await supabase.auth.getSession()
       if (session?.access_token) {
-        const apiUrl =
-          process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+        const apiUrl = getApiBaseUrl()
         const response = await fetch(
           `${apiUrl}/api/user/profile/email-notification`,
           {

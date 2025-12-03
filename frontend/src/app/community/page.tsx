@@ -16,6 +16,17 @@ import {
   Trash2,
 } from 'lucide-react'
 
+// API Base URL 결정 함수
+const getApiBaseUrl = () => {
+  if (
+    process.env.NODE_ENV === 'production' &&
+    !process.env.NEXT_PUBLIC_API_URL
+  ) {
+    return ''
+  }
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+}
+
 interface ChatMessage {
   id: string
   user_id: string
@@ -223,8 +234,7 @@ export default function CommunityPage() {
       // 답장인 경우 이메일 전송 API 호출
       if (replyingTo) {
         try {
-          const apiUrl =
-            process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+          const apiUrl = getApiBaseUrl()
           await fetch(`${apiUrl}/email/process-pending`, {
             method: 'POST',
           })

@@ -8,6 +8,17 @@ interface KeywordStat {
   count: number
 }
 
+// API Base URL 결정 함수
+const getApiBaseUrl = () => {
+  if (
+    process.env.NODE_ENV === 'production' &&
+    !process.env.NEXT_PUBLIC_API_URL
+  ) {
+    return ''
+  }
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+}
+
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState('')
   const [popularKeywords, setPopularKeywords] = useState<KeywordStat[]>([])
@@ -18,8 +29,7 @@ export default function SearchBar() {
   useEffect(() => {
     const fetchPopularKeywords = async () => {
       try {
-        const apiUrl =
-          process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+        const apiUrl = getApiBaseUrl()
         const response = await fetch(
           `${apiUrl}/api/stats/popular-keywords?limit=6`
         )
@@ -53,8 +63,7 @@ export default function SearchBar() {
 
       // 검색 키워드 로깅
       try {
-        const apiUrl =
-          process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+        const apiUrl = getApiBaseUrl()
         await fetch(
           `${apiUrl}/stats/search?keyword=${encodeURIComponent(keyword)}`,
           {
