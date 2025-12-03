@@ -230,7 +230,7 @@ function SearchContent() {
         const apiUrl =
           process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
         const response = await fetch(
-          `${apiUrl}/api/news/search?query=${encodeURIComponent(
+          `${apiUrl}/news/search?query=${encodeURIComponent(
             query
           )}&display=${itemsPerPage}&start=${start}&sort=date`
         )

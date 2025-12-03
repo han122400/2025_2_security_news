@@ -223,7 +223,8 @@ export default function CommunityPage() {
       // 답장인 경우 이메일 전송 API 호출
       if (replyingTo) {
         try {
-          await fetch('http://localhost:8000/api/email/process-pending', {
+          const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+          await fetch(`${apiUrl}/email/process-pending`, {
             method: 'POST',
           })
         } catch (err) {

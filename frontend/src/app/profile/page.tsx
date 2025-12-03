@@ -82,7 +82,7 @@ export default function ProfilePage() {
         if (session?.access_token) {
           const apiUrl =
             process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
-          const response = await fetch(`${apiUrl}/api/user/profile`, {
+          const response = await fetch(`${apiUrl}/user/profile`, {
             headers: {
               Authorization: `Bearer ${session.access_token}`,
             },
@@ -155,7 +155,7 @@ export default function ProfilePage() {
       if (session?.access_token) {
         const apiUrl =
           process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
-        const response = await fetch(`${apiUrl}/api/user/profile/categories`, {
+        const response = await fetch(`${apiUrl}/user/profile/categories`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -238,7 +238,7 @@ export default function ProfilePage() {
         const apiUrl =
           process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
         const response = await fetch(
-          `${apiUrl}/api/user/profile/email-notification`,
+          `${apiUrl}/user/profile/email-notification`,
           {
             method: 'PUT',
             headers: {

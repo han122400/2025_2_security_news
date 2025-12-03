@@ -39,7 +39,7 @@ export default function StatsDashboard() {
       // 인기 키워드 가져오기
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
       const keywordsRes = await fetch(
-        `${apiUrl}/api/stats/popular-keywords?limit=30`
+        `${apiUrl}/stats/popular-keywords?limit=30`
       )
       if (keywordsRes.ok) {
         const keywords = await keywordsRes.json()
@@ -49,7 +49,7 @@ export default function StatsDashboard() {
 
       // 카테고리별 뉴스 통계 가져오기
       console.log('카테고리 통계 가져오는 중...')
-      const categoryRes = await fetch(`${apiUrl}/api/news/category-stats`)
+      const categoryRes = await fetch(`${apiUrl}/news/category-stats`)
       console.log('응답 상태:', categoryRes.status)
       if (categoryRes.ok) {
         const stats = await categoryRes.json()
