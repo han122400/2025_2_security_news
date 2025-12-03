@@ -22,6 +22,7 @@ security_news/
 ### 1. 환경 변수 설정
 
 #### Frontend
+
 ```bash
 cd frontend
 cp .env.example .env.local
@@ -29,6 +30,7 @@ cp .env.example .env.local
 ```
 
 #### Backend
+
 ```bash
 cd backend
 cp .env.example .env
@@ -62,10 +64,12 @@ Backend는 `http://localhost:8000`에서 실행됩니다.
 ## 🔑 환경 변수 설정 가이드
 
 ### Frontend (.env.local)
+
 - `NEXT_PUBLIC_SUPABASE_URL`: Supabase 프로젝트 URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Supabase Anon 키
 
 ### Backend (.env)
+
 - `NAVER_CLIENT_ID`: 네이버 검색 API 클라이언트 ID
 - `NAVER_CLIENT_SECRET`: 네이버 검색 API 시크릿 키
 - `SUPABASE_URL`: Supabase 프로젝트 URL
@@ -85,12 +89,14 @@ Backend는 `http://localhost:8000`에서 실행됩니다.
 ## 🛠️ 기술 스택
 
 ### Frontend
+
 - Next.js 15
 - TypeScript
 - Supabase Auth
 - Tailwind CSS
 
 ### Backend
+
 - FastAPI
 - Python 3.8+
 - Supabase
