@@ -21,10 +21,7 @@ import { useCategoryFilter } from '@/contexts/CategoryFilterContext'
 
 // API Base URL 결정 함수
 const getApiBaseUrl = () => {
-  if (
-    process.env.NODE_ENV === 'production' &&
-    !process.env.NEXT_PUBLIC_API_URL
-  ) {
+  if (typeof window !== 'undefined') {
     return ''
   }
   return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'

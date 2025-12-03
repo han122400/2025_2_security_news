@@ -1,15 +1,12 @@
 // 백엔드 API 호출 함수
 
-// 동적으로 API URL 결정 (.env 환경변수에서 가져옴)
+// 동적으로 API URL 결정
 const getApiBaseUrl = () => {
-  // 프로덕션(배포 환경)에서는 빈 문자열 사용 (rewrites로 /api/* 경로 처리)
-  // 로컬 개발 환境에서는 환경변수 또는 기본값 사용
-  if (
-    process.env.NODE_ENV === 'production' &&
-    !process.env.NEXT_PUBLIC_API_URL
-  ) {
+  // 브라우저 환경에서는 항상 상대 경로 사용 (Next.js rewrites가 처리)
+  if (typeof window !== 'undefined') {
     return ''
   }
+  // 서버 사이드에서는 환경변수 사용
   return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 }
 
