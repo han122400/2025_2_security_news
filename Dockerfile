@@ -9,9 +9,8 @@ RUN npm ci
 
 COPY frontend/ ./
 
-# 프로덕션 환경 변수 설정
+# 프로덕션 환경 변수 설정 (NEXT_PUBLIC_API_URL은 설정하지 않음 - rewrites 사용)
 ENV NODE_ENV=production
-ENV NEXT_PUBLIC_API_URL=/api
 ENV NEXT_PUBLIC_SUPABASE_URL=https://ytwxtuogbwarambyddls.supabase.co
 ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl0d3h0dW9nYndhcmFtYnlkZGxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzMzkyODYsImV4cCI6MjA3ODkxNTI4Nn0.1DcFDAe_7jfNQJ2mSK9tCARXCU_ZE9MtYhv6KqVrKCY
 
