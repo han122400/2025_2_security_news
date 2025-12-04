@@ -13,6 +13,6 @@ echo "Waiting for backend to start..."
 sleep 3
 
 echo "=== Starting Frontend Server on port $PORT ==="
-# 프론트엔드 시작 (standalone 모드)
+# 프론트엔드 시작
 cd /app/frontend
-node server.js
+npm start
