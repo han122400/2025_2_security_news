@@ -24,7 +24,7 @@ WORKDIR /app
 # Python 3.10 설치 (FastAPI용)
 RUN apt-get update && apt-get install -y \
     python3.10 \
-    python3.10-distutils \
+    python3-distutils \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
