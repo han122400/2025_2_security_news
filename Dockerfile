@@ -21,21 +21,17 @@ FROM node:20-slim
 
 WORKDIR /app
 
-# Python 3.10 설치 (FastAPI용)
+# Python 설치 (FastAPI용)
 RUN apt-get update && apt-get install -y \
-    python3.10 \
+    python3 \
     python3-distutils \
+    python3-pip \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# pip 설치 (Python 3.10 전용)
-RUN curl -sS https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
-    && python3.10 get-pip.py \
-    && rm get-pip.py
-
 # 백엔드 설정
 COPY backend/requirements.txt ./backend/
-RUN python3.10 -m pip install --no-cache-dir -r backend/requirements.txt --break-system-packages
+RUN python3 -m pip install --no-cache-dir -r backend/requirements.txt --break-system-packages
 
 COPY backend/ ./backend/
 
