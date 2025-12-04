@@ -15,4 +15,4 @@ sleep 3
 echo "=== Starting Frontend Server on port $PORT ==="
 # 프론트엔드 시작
 cd /app/frontend
-npm start
+npm start -- -p "$PORT" -H 0.0.0.0
