@@ -40,6 +40,12 @@ async def startup_event():
     asyncio.create_task(background_cache_updater())
 
 
+@app.get("/api/health")
+async def health_check():
+    """헬스 체크 엔드포인트"""
+    return {"status": "healthy", "message": "Backend is running"}
+
+
 @app.get("/api/test")
 async def test_get():
     return {"message": "GET test successful"}
