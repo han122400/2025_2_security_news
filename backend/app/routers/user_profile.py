@@ -19,6 +19,7 @@ if SUPABASE_URL and SUPABASE_SERVICE_ROLE:
         supabase = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE)
         print("✅ User Profile API: Supabase client initialized with SERVICE_ROLE")
     except Exception as e:
+        supabase = None
         print(f"❌ User Profile API: Failed to initialize Supabase: {str(e)}")
 else:
     print(f"⚠️ SUPABASE_URL: {SUPABASE_URL is not None}, SUPABASE_SERVICE_ROLE: {SUPABASE_SERVICE_ROLE is not None}")
@@ -35,7 +36,13 @@ async def get_user_profile(authorization: Optional[str] = Header(None)):
     사용자 프로필 정보를 가져옵니다.
     """
     if not supabase:
-        raise HTTPException(status_code=500, detail="Database not configured")
+        return {
+            "email": "guest@localhost",
+            "name": "Guest",
+            "category_settings": {},
+            "email_notification": False,
+            "comments": []
+        }
     
     if not authorization or not authorization.startswith("Bearer "):
         raise HTTPException(status_code=401, detail="Unauthorized")
@@ -115,7 +122,7 @@ async def update_category_settings(
     카테고리 설정을 업데이트합니다.
     """
     if not supabase:
-        raise HTTPException(status_code=500, detail="Database not configured")
+        raise HTTPException(status_code=503, detail="Database not configured")
     
     if not authorization or not authorization.startswith("Bearer "):
         raise HTTPException(status_code=401, detail="Unauthorized")
@@ -154,7 +161,7 @@ async def update_email_notification(
     이메일 알림 설정을 업데이트합니다.
     """
     if not supabase:
-        raise HTTPException(status_code=500, detail="Database not configured")
+        raise HTTPException(status_code=503, detail="Database not configured")
     
     if not authorization or not authorization.startswith("Bearer "):
         raise HTTPException(status_code=401, detail="Unauthorized")
@@ -190,7 +197,7 @@ async def get_user_comments(authorization: Optional[str] = Header(None)):
     사용자가 작성한 댓글 목록을 가져옵니다.
     """
     if not supabase:
-        raise HTTPException(status_code=500, detail="Database not configured")
+        raise HTTPException(status_code=503, detail="Database not configured")
     
     if not authorization or not authorization.startswith("Bearer "):
         raise HTTPException(status_code=401, detail="Unauthorized")

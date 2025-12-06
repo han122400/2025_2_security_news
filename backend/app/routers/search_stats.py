@@ -25,6 +25,7 @@ if SUPABASE_URL and SUPABASE_KEY:
         print("✅ Supabase client initialized successfully")
     except Exception as e:
         print(f"❌ Failed to initialize Supabase: {str(e)}")
+        supabase = None
 else:
     print("⚠️ Warning: SUPABASE_URL or SUPABASE_KEY not set. Stats features will be limited.")
 
