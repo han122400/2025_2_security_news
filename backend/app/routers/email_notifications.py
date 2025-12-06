@@ -11,7 +11,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import os
 
-router = APIRouter(prefix="/api/email", tags=["email"])
+router = APIRouter(prefix="/email", tags=["email"])
 
 
 class ReplyNotificationEmail(BaseModel):
